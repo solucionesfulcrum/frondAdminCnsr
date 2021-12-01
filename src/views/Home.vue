@@ -80,7 +80,7 @@
               <v-spacer></v-spacer>
               <v-dialog v-model="dialog" max-width="500px">
                 <template v-slot:activator="{ on, attrs }">
-                  <div v-if="(valiBoton != 0)">
+                  <div>
                     <v-btn
                       color="primary"
                       dark
