@@ -188,7 +188,7 @@ export default {
       { text: "Problema", value: "problema" },
       { text: "Dependencia", value: "datosPersonal.datosDependencia.descDep" },
       { text: "Fecha Registro", value: "fecha_reg" },
-      { text: "Estado", value: "estado" },
+      { text: "Estado", value: "datosEstado.descripMaestro" },
       { text: "Actions", value: "actions", sortable: false },
     ],
     desserts: [],
@@ -235,6 +235,7 @@ export default {
             })
             .then((res) => {
               console.log(this.setDni);
+              console.log("data incidencia", res.data);
               this.desserts = res.data;
               this.dialogDataApi = false;
               //this.desserts.length!=0?
@@ -334,12 +335,13 @@ export default {
                 {
                   personal: this.setDatoPersonal[0].url,
                   problema: this.editedItem.problema,
-                  userReg: "Kevin",
+                  userReg: "cnsr",
                   numTicket:
                     "DSI" +
                     this.setDatoPersonal[0].dniPer +
                     "T" +
                     (parseInt(this.desserts.length) + 1),
+                  estado: RUTA_SERVIDOR + "/maestro/1/",
                 },
                 {
                   headers: { Authorization: this.auth },
