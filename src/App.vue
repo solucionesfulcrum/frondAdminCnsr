@@ -18,7 +18,7 @@
       >
         <v-icon>mdi-home</v-icon>
       </v-btn>
-      Cerrar Sesión
+      Cerrar
       <v-dialog
       v-model="dialog"
       persistent
@@ -79,6 +79,7 @@ export default {
        actionOut(){
          //localStorage.removeItem('keyValue')
          this.dialog=false
+         window.close()
          //this.$router.push('/')
        },
        actionPrincipal(){

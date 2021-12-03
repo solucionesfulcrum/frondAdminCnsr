@@ -32,6 +32,40 @@
       </v-card>
     </v-dialog>
 
+    <v-dialog
+      transition="dialog-bottom-transition"
+      max-width="600"
+      v-model="dialogIncidencia"
+    >
+      <v-card>
+        <v-toolbar color="#1973a5" dark>¡Aviso Importante!, ¡Asi va tu Incidencia!</v-toolbar>
+        <v-card-text>
+          <div class="text-h4 pa-5">
+            <v-card class="mx-auto" max-width="450">
+                <v-card-text>
+                   <div v-if="this.desserts.length != 0">
+                    Solicitante: {{ this.desserts[0].datosPersonal.apePatPer }}
+                    {{ this.desserts[0].datosPersonal.apeMatPer }}
+                    {{ this.desserts[0].datosPersonal.nomPer }}
+                  </div>
+                  <p class="text-h5 text--primary" v-if="this.desserts.length != 0">Estado de Incidencia - {{this.desserts[0].datosEstado.descripMaestro}}</p>
+                  <p>Detalles:</p>
+                  <div v-if="this.desserts.length != 0" class="text--primary">
+                    Personal Asignado: {{ this.desserts[0].userReg }}<br />
+                    Problema: {{ this.desserts[0].problema }}<br />
+                    Clasificación de Solución: {{ this.desserts[0].clasiSolu }}<br />
+                    Solucion: {{ this.desserts[0].solucion }}
+                  </div>
+                </v-card-text>
+             </v-card>
+          </div>
+        </v-card-text>
+        <v-card-actions class="justify-end">
+          <v-btn text @click="dialogIncidencia = false">cerrar</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
     <v-card class="mx-auto my-5" max-width="900">
       <v-system-bar color="#1973a5" height="30" dark
         >DATOS DE INCIDENCIA</v-system-bar
@@ -157,7 +191,7 @@
             <v-icon small class="mr-2" @click="editItem(item)">
               mdi-pencil
             </v-icon>
-            <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
+            <v-icon small @click="visualItem(item)"> mdi-eye-settings </v-icon>
           </template>
           <!--<template v-slot:no-data>
               <v-btn color="primary" @click="initialize"> Reset </v-btn>
@@ -205,6 +239,7 @@ export default {
     dialogDataApi: false,
     dialogAviso: false,
     dialogDelete: false,
+    dialogIncidencia: false,
     valid: true,
     rules: {
       required: (value) => !!value || "Campo Obligatorio.",
@@ -376,15 +411,11 @@ export default {
       this.closeDelete();
     },
 
-    deleteItem(item) {
-      if (item.estado !== "Pendiente") {
-        console.log("no puede editar");
-        this.dialogAviso = true;
-      } else {
-        this.editedIndex = this.desserts.indexOf(item);
-        this.editedItem = Object.assign({}, item);
-        this.dialogDelete = true;
-      }
+    visualItem(item) {
+        //this.editedIndex = this.desserts.indexOf(item);
+        //this.editedItem = Object.assign({}, item);
+        //this.dialogDelete = true;
+        this.dialogIncidencia = true;
     },
 
     editItem(item) {
