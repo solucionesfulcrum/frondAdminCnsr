@@ -388,8 +388,8 @@ export default {
     },
 
     editItem(item) {
-      console.log("Datos de Item", item.estado);
-      if (item.estado !== "Pendiente") {
+      console.log("Datos de Item", item.datosEstado.descripMaestro);
+      if (item.datosEstado.descripMaestro !== "PENDIENTE") {
         console.log("no puede editar");
         this.dialogAviso = true;
       } else {
