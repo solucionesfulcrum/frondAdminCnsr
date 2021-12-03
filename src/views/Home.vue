@@ -403,6 +403,46 @@ export default {
 
     editar() {
       console.log("esto es para editar");
+      console.log("editITem",this.editedItem)
+      axios
+        .post(RUTA_SERVIDOR+"/api/token/", {
+          username: "cnsr",
+          password: "123456",
+        })
+        .then((response) => {
+          this.auth = "Bearer " + response.data.access;
+          axios
+            .patch(
+              RUTA_SERVIDOR+"/incidenciaDsi/" +
+                this.editedItem.url.split("/")[4] +
+                "/",
+              {
+                  personal: this.editedItem.personal,
+                  problema: this.editedItem.problema,
+                  userReg: this.editedItem.userReg,
+                  numTicket: this.editedItem.numTicket,
+                  estado: this.editedItem.estado,
+              },
+              {
+                headers: { Authorization: this.auth },
+              }
+            )
+            .then((res) => {
+              this.dialogDataApi = true;
+              console.log("exito", res.status);
+              this.dialog = false;
+              this.buscar()
+            })
+            .catch((res) => {
+              console.warn("Error:", res);
+              this.dialog = false;
+            });
+        })
+        .catch((response) => {
+          response === 404
+            ? console.warn("lo sientimos no tenemos servicios")
+            : console.warn("Error:", response);
+        });
     },
   },
 };
