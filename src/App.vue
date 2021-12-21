@@ -11,7 +11,7 @@
       <v-spacer></v-spacer>
 
       <v-spacer></v-spacer>
-      Home
+      <!--Home
       <v-btn 
       icon
       @click="actionPrincipal"
@@ -58,9 +58,9 @@
           </v-btn>
         </v-card-actions>
       </v-card>
-    </v-dialog>
+    </v-dialog>-->
     </v-app-bar>
-
+    
     <v-main>
       <router-view/>
     </v-main>

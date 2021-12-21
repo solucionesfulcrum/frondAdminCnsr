@@ -206,6 +206,10 @@
 <script>
 import axios from "axios";
 export const RUTA_SERVIDOR = process.env.VUE_APP_RUTA_API;
+import VueExcelXlsx from "vue-excel-xlsx";
+import Vue from "vue";
+
+Vue.use(VueExcelXlsx);
 
 export default {
   data: () => ({
